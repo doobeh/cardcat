@@ -32,7 +32,6 @@ def create_app(config=None):
     register_cli(app)
     register_blueprints(app)
     register_jinja_filters(app)
-    register_csrf(app)
     return app
 
 

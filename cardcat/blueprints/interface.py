@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, jsonify, request, render_template
 from cardcat.models import Log
 from datetime import datetime
 from cardcat.database import db
@@ -14,6 +14,13 @@ def log():
     foo.dttm = datetime.fromisoformat(json.get('dt'))
     foo.vendor = json.get('vendor')
     foo.card = json.get('card')
+    foo.token = json.get('token')
     db.session.add(foo)
     db.session.commit()
     return jsonify(message='logged')
+
+
+@bp.route('/view/<token>')
+def categorize(token):
+    charge = Log.query.filter_by(token=token).first_or_404()
+    return render_template('charge.html', charge=charge)

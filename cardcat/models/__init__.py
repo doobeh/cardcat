@@ -85,4 +85,5 @@ class Log(db.Model):
     card = db.Column(db.String, nullable=False)
     dttm = db.Column(db.DateTime, default=datetime.now)
     category = db.Column(db.String)
+    token = db.Column(db.String, nullable=False, unique=True)
     person = db.Column(db.String)

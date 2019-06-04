@@ -28,24 +28,27 @@
         <form>
             <div class="input-field col s12">
                 <input type="hidden" name="token" value="{{ charge.token}}"/>
-                <select>
+                <select name="person">
                     <optgroup label="Family">
-                        <option value="1">Anthony</option>
-                        <option value="2">Ting</option>
+                        <option value="anthony">Anthony</option>
+                        <option value="ting">Ting</option>
                     </optgroup>
                     <optgroup label="Business">
-                        <option value="3">Caicos Marina</option>
-                        <option value="4">Windward</option>
-                        <option value="4">Stanbrook</option>
-                        <option value="4">Stanbrooks Law</option>
-                        <option value="4">Graceway</option>
+                        <option value="cms">Caicos Marina</option>
+                        <option value="ww">Windward</option>
+                        <option value="stanbrook">Stanbrook</option>
+                        <option value="sl">Stanbrooks Law</option>
+                        <option value="gtl">Graceway</option>
                     </optgroup>
                 </select>
                 <label>Charger</label>
             </div>
 
             <div class="input-field col s12">
-                <select>
+                <select name="category">
+                    <optgroup label="3rd Party">
+                        <option value="third-party">3rd Party</option>
+                    </optgroup>
 
                     <optgroup label="General">
                         <option value="electricity">Fortis</option>
@@ -62,8 +65,8 @@
                     </optgroup>
 
                     <optgroup label="Reimbursable">
-                        <option value="3">Digital</option>
-                        <option value="4">Physical</option>
+                        <option value="reimburse-digital">Digital</option>
+                        <option value="reimburse-physical">Physical</option>
                     </optgroup>
                 </select>
                 <label>Category</label>

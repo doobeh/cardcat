@@ -20,13 +20,17 @@ def log():
     return jsonify(message="logged")
 
 
-@bp.route("/view/<token>")
+@bp.route("/view/<token>", methods=['post', 'get'])
 def categorize(token):
+    if request.method == 'post':
+        charge = Log.query.filter_by(token=token).first_or_404()
+        charge.person = request.form["person"]
+        charge.category = request.form["category"]
     charge = Log.query.filter_by(token=token).first_or_404()
     return render_template("charge.html", charge=charge)
 
 
-@bp.route("/")
+@bp.route("/solobolo")
 def home():
-    charge = Log.query.first()
-    return render_template("charge.html", charge=charge)
+    charges = Log.query.order_by(Log.dttm.desc()).all()
+    return render_template("summary.html", charges=charges)

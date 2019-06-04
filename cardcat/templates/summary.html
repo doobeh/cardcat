@@ -1,0 +1,65 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+
+<body>
+<div class="container">
+    <br><br>
+    <h4 class="header center orange-text">Summary</h4>
+
+    <div class="row center">
+
+        <table class="striped">
+            <thead>
+            <tr>
+                <th>Person</th>
+                <th>Category</th>
+                <th>Amount</th>
+                <th>Vendor</th>
+                <th>Date</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            {% for charge in charges %}
+            <tr>
+                <td>{{ charge.person }}</td>
+                <td>{{ charge.category}}</td>
+                <td>{{ charge.amount|usd }}</td>
+                <td>{{ charge.vendor }}</td>
+                <td>{{ charge.dttm.strftime("%d%b%Y") |upper}}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+    <br><br>
+
+</div>
+
+<!--JavaScript at end of body for optimized loading-->
+
+<script   src="https://code.jquery.com/jquery-3.4.1.min.js"   integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="   crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $('select').formSelect();
+    });
+
+</script>
+</body>
+</html>

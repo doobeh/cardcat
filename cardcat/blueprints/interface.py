@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, request, render_template
+from flask import Blueprint, jsonify, request, render_template, redirect, url_for
 from cardcat.models import Log
 from datetime import datetime
 from cardcat.database import db
@@ -26,7 +26,10 @@ def categorize(token):
         charge = Log.query.filter_by(token=token).first_or_404()
         charge.person = request.form["person"]
         charge.category = request.form["category"]
+        db.session.commit()
+        return redirect(url_for('interface.home'))
     charge = Log.query.filter_by(token=token).first_or_404()
+
     return render_template("charge.html", charge=charge)
 
 

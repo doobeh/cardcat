@@ -6,21 +6,27 @@ from cardcat.database import db
 bp = Blueprint("interface", __name__)
 
 
-@bp.route('/log', methods=['POST', 'GET'])
+@bp.route("/log", methods=["POST", "GET"])
 def log():
     json = request.json
     foo = Log()
-    foo.amount = json.get('amount')
-    foo.dttm = datetime.fromisoformat(json.get('dt'))
-    foo.vendor = json.get('vendor')
-    foo.card = json.get('card')
-    foo.token = json.get('token')
+    foo.amount = json.get("amount")
+    foo.dttm = datetime.fromisoformat(json.get("dt"))
+    foo.vendor = json.get("vendor")
+    foo.card = json.get("card")
+    foo.token = json.get("token")
     db.session.add(foo)
     db.session.commit()
-    return jsonify(message='logged')
+    return jsonify(message="logged")
 
 
-@bp.route('/view/<token>')
+@bp.route("/view/<token>")
 def categorize(token):
     charge = Log.query.filter_by(token=token).first_or_404()
-    return render_template('charge.html', charge=charge)
+    return render_template("charge.html", charge=charge)
+
+
+@bp.route("/")
+def home():
+    charge = Log.query.first()
+    return render_template("charge.html", charge=charge)

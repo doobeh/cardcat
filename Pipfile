@@ -10,6 +10,12 @@ flask = "*"
 flask-sqlalchemy = "*"
 flask-security = "*"
 requests = "*"
+factory-boy = "*"
+bcrypt = "*"
+black = "*"
 
 [requires]
 python_version = "3.7"
+
+[pipenv]
+allow_prereleases = true

@@ -78,10 +78,10 @@ class Role(db.Model, RoleMixin):
 
 
 class Log(db.Model):
-    __tablename__ = 'log'
+    __tablename__ = "log"
     id = db.Column(db.Integer, primary_key=True)
     amount = db.Column(db.Integer, nullable=False)
-    vendor = db.Column(db.String, default='')
+    vendor = db.Column(db.String, default="")
     card = db.Column(db.String, nullable=False)
     dttm = db.Column(db.DateTime, default=datetime.now)
     category = db.Column(db.String)
